@@ -8,10 +8,10 @@
 		<version>2.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.gordon</groupId>
+	<groupId>com.gordon</groupId>
 	<artifactId>s-rpc</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>s-rpc</name>
+	<name>simpleRpc</name>
 	<packaging>pom</packaging>
 	<description>simpleRpc</description>
 
@@ -33,11 +33,11 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.gordon.rpc</groupId>
-				<artifactId>orc-rpc-spring-boot-starter</artifactId>
+				<artifactId>s-rpc-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gordon.rpc.simple</groupId>
+				<groupId>com.gordon.rpc</groupId>
 				<artifactId>simple-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
