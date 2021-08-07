@@ -23,15 +23,11 @@
 
 	<modules>
 		<module>s-rpc-spring-boot-starter</module>
-		<module>simple-rpc-server</module>
-		<module>simple-rpc-client</module>
-		<module>simple-rpc-api</module>
+		<module>simple-client</module>
+		<module>simple-server</module>
 		<module>simple-api</module>
-		<module>s-rpc-spring-boot-starter</module>
-		<module><![CDATA[<module>simple-rpc-server</module>]]></module>
-		<module>simple-rpc-server</module>
-		<module>simple-rpc-client</module>
-		<module>simple-rpc-api</module>
+		<module>simple-client</module>
+		<module>simple-server</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
