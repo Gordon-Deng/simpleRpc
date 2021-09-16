@@ -34,14 +34,7 @@ public class SRpcAutoConfiguration {
     public Registry registry(
         @Autowired SRpcProperties orcRpcProperties) throws NacosException {
         // Zookeeper 注册中心
-        //ZookeeperRegistry serviceRegistry = new ZookeeperRegistry(
-        //    orcRpcProperties.getRegisterAddr(),
-        //    orcRpcProperties.getServerPort(),
-        //    orcRpcProperties.getSerializer(),
-        //    orcRpcProperties.getWeight());
-
-        // nacos注册中心
-        NacosRegistry serviceRegistry = new NacosRegistry(
+        ZookeeperRegistry serviceRegistry = new ZookeeperRegistry(
             orcRpcProperties.getRegisterAddr(),
             orcRpcProperties.getServerPort(),
             orcRpcProperties.getSerializer(),
