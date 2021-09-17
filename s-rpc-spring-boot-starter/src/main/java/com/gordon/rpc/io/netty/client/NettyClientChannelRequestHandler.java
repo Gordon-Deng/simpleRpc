@@ -18,10 +18,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * @author luxing.hss
- * @date 2021/2/19
- **/
+
 @Slf4j
 public class NettyClientChannelRequestHandler extends ChannelInboundHandlerAdapter implements ClientRequestHandler {
 
