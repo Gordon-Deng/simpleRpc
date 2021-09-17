@@ -1,4 +1,4 @@
-package com.gordon.rpc.io.common;
+package com.gordon.rpc.io.serializer;
 
 public enum SerializerEnum {
 

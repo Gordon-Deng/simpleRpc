@@ -4,25 +4,22 @@ import com.google.common.collect.Lists;
 import com.gordon.rpc.registry.ServiceURL;
 import com.gordon.rpc.util.AtomicPositiveInteger;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RoundRobinLoadBalancer implements LoadBalancer{
+public class RoundRobinLoadBalancer implements LoadBalancer {
 
     private final static Map<String, AtomicPositiveInteger> sequences = new ConcurrentHashMap<>();
 
     private final static Map<String, AtomicPositiveInteger> weightSequences = new ConcurrentHashMap<>();
 
-    @Override
-    public String name() {
+    @Override public String name() {
         return LoadBalancerEnum.ROUND.getCode();
     }
 
-    @Override
-    public ServiceURL selectOne(List<ServiceURL> addresses) {
+    @Override public ServiceURL selectOne(List<ServiceURL> addresses) {
         String serviceId = addresses.get(0).getServiceId();
         int length = addresses.size(); // 总个数
         int maxWeight = 0; // 最大权重
@@ -65,6 +62,5 @@ public class RoundRobinLoadBalancer implements LoadBalancer{
         return addresses.get(sequence.getAndIncrement() % length);
 
     }
-
 
 }

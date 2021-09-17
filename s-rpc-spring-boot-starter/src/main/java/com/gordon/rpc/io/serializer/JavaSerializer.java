@@ -1,7 +1,5 @@
 package com.gordon.rpc.io.serializer;
 
-import com.gordon.rpc.io.common.SerializerEnum;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;

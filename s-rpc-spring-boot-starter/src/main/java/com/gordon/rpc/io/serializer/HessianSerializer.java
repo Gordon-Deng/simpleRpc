@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 
 import com.caucho.hessian.io.HessianInput;
 import com.caucho.hessian.io.HessianOutput;
-import com.gordon.rpc.io.common.SerializerEnum;
 
 public class HessianSerializer implements Serializer{
 

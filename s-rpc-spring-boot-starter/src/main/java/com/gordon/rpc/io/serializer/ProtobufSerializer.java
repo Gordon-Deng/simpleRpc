@@ -6,7 +6,6 @@ import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtobufIOUtil;
 import com.dyuproject.protostuff.Schema;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
-import com.gordon.rpc.io.common.SerializerEnum;
 
 public class ProtobufSerializer implements Serializer{
 
