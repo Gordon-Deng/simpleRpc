@@ -6,6 +6,7 @@ import com.gordon.rpc.context.BeanContext;
 import com.gordon.rpc.invocation.InvocationServiceSelector;
 import com.gordon.rpc.registry.Registry;
 import com.gordon.rpc.registry.RpcBootStarter;
+import com.gordon.rpc.registry.nacos.NacosRegistry;
 import com.gordon.rpc.registry.zookeeper.ZookeeperRegistry;
 import com.gordon.rpc.util.SpiLoaderUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,18 @@ public class SRpcAutoConfiguration {
     public Registry registry(
         @Autowired SRpcProperties orcRpcProperties) throws NacosException {
         // Zookeeper 注册中心
-        ZookeeperRegistry serviceRegistry = new ZookeeperRegistry(
-            orcRpcProperties.getRegisterAddr(),
-            orcRpcProperties.getServerPort(),
-            orcRpcProperties.getSerializer(),
-            orcRpcProperties.getWeight());
+        //ZookeeperRegistry serviceRegistry = new ZookeeperRegistry(
+        //    orcRpcProperties.getRegisterAddr(),
+        //    orcRpcProperties.getServerPort(),
+        //    orcRpcProperties.getSerializer(),
+        //    orcRpcProperties.getWeight());
+
+        // nacos注册中心
+        NacosRegistry serviceRegistry = new NacosRegistry(
+                orcRpcProperties.getRegisterAddr(),
+                orcRpcProperties.getServerPort(),
+                orcRpcProperties.getSerializer(),
+                orcRpcProperties.getWeight());
         
         InvocationServiceSelector.setRegistry(serviceRegistry);
         InvocationServiceSelector.setLoadBalancer(SpiLoaderUtils.getLoadBalancer(orcRpcProperties.getLoadBalance()));
