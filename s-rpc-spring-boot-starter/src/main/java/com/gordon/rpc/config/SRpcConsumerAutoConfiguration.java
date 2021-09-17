@@ -1,10 +1,8 @@
 package com.gordon.rpc.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.gordon.rpc.invocation.SRpcConsumerFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
