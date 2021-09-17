@@ -1,20 +1,27 @@
 package com.gordon.rpc.registry.zookeeper;
 
 import com.alibaba.fastjson.JSON;
+import com.gordon.rpc.exception.SRpcException;
 import com.gordon.rpc.model.ServiceMetadata;
 import com.gordon.rpc.registry.Registry;
 import com.gordon.rpc.registry.ServiceURL;
+import com.gordon.rpc.registry.cache.ClientServiceDiscoveryCache;
 import com.gordon.rpc.registry.cache.ServerServiceMetadataCache;
+import com.gordon.rpc.util.ServiceUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.exception.ZkMarshallingError;
 import org.I0Itec.zkclient.serialize.ZkSerializer;
+import org.springframework.util.CollectionUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+
+import static com.gordon.rpc.common.constants.SRpcConstant.SERVICE_PATH_DELIMITER;
+import static com.gordon.rpc.common.constants.SRpcConstant.UTF_8;
 
 @Slf4j
 public class ZookeeperRegistry implements Registry {
@@ -122,7 +129,7 @@ public class ZookeeperRegistry implements Registry {
                     String servicePath = ServiceUtils.getRegisterServiceParentPath(serviceId);
                     List<String> children = zkClient.getChildren(servicePath);
                     if (CollectionUtils.isEmpty(children)) {
-                        throw new OrcRpcException("No rpc provider " + serviceId + " available!");
+                        throw new SRpcException("No rpc provider " + serviceId + " available!");
                     }
                     services = getAndSetServiceCache(serviceId, children);
                 }
