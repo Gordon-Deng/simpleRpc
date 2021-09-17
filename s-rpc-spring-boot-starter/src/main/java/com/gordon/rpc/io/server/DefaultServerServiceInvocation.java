@@ -1,8 +1,11 @@
 package com.gordon.rpc.io.server;
 
 import com.gordon.rpc.context.BeanContext;
+import com.gordon.rpc.domain.RpcStatusEnum;
+import com.gordon.rpc.domain.SRpcRequest;
 import com.gordon.rpc.domain.SRpcResponse;
 import com.gordon.rpc.model.ServiceMetadata;
+import com.gordon.rpc.registry.cache.ServerServiceMetadataCache;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -15,13 +18,13 @@ public class DefaultServerServiceInvocation implements ServerServiceInvocation{
     }
 
     @Override
-    public SRpcResponse handleRequest(SRpcResponse req) throws Exception {
+    public SRpcResponse handleRequest(SRpcRequest req) throws Exception {
         // 获取服务元数据
         ServiceMetadata serviceMetadata = ServerServiceMetadataCache.get(req.getServiceId());
 
         SRpcResponse response = null;
         if (serviceMetadata == null){
-            response = new OrcRpcResponse(RpcStatusEnum.NOT_FOUND);
+            response = new SRpcResponse(RpcStatusEnum.NOT_FOUND);
         }else {
             try {
                 // 反射调用
@@ -40,5 +43,5 @@ public class DefaultServerServiceInvocation implements ServerServiceInvocation{
         return response;
 
     }
-
+    
 }

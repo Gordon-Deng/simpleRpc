@@ -5,6 +5,7 @@ import com.alibaba.nacos.api.exception.NacosException;
 import com.gordon.rpc.context.BeanContext;
 import com.gordon.rpc.registry.Registry;
 import com.gordon.rpc.registry.RpcBootStarter;
+import com.gordon.rpc.registry.zookeeper.ZookeeperRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

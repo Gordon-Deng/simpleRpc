@@ -1,8 +1,20 @@
 package com.gordon.rpc.io.netty.server;
 
+import com.gordon.rpc.io.protocol.codec.SProtocolDecoder;
+import com.gordon.rpc.io.protocol.codec.SProtocolEncoder;
+import com.gordon.rpc.io.server.DefaultServerServiceInvocation;
+import com.gordon.rpc.io.server.NetServer;
+import com.gordon.rpc.io.server.ServerServiceInvocation;
+import com.gordon.rpc.util.SpiLoaderUtils;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.*;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
-import java.nio.channels.Channel;
 
 @Slf4j
 public class NettyNetServer implements NetServer {
@@ -53,8 +65,8 @@ public class NettyNetServer implements NetServer {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         //pipeline.addLast(new DelimiterBasedFrameDecoder(2048, DelimiterUtils.getDelimiteByteBuf()));
-                        pipeline.addLast(new OrcProtocolEncoder());
-                        pipeline.addLast(new OrcProtocolDecoder());
+                        pipeline.addLast(new SProtocolEncoder());
+                        pipeline.addLast(new SProtocolDecoder());
                         pipeline.addLast(new NettyServerChannelRequestHandler(requestProcessor, SpiLoaderUtils.getSerializer(serializer)));
                     }
                 });

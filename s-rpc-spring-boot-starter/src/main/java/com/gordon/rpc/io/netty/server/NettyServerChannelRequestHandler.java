@@ -6,14 +6,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.orc.rpc.domain.OrcRpcRequest;
-import com.orc.rpc.domain.OrcRpcResponse;
-import com.orc.rpc.domain.RpcStatusEnum;
-import com.orc.rpc.io.protocol.ProtocolConstant;
-import com.orc.rpc.io.protocol.ProtocolMsg;
-import com.orc.rpc.io.serializer.Serializer;
-import com.orc.rpc.io.server.ServerServiceInvocation;
-import com.orc.rpc.util.DelimiterUtils;
+import com.gordon.rpc.domain.SRpcRequest;
+import com.gordon.rpc.domain.SRpcResponse;
+import com.gordon.rpc.io.protocol.ProtocolConstant;
+import com.gordon.rpc.io.protocol.ProtocolMsg;
+import com.gordon.rpc.io.serializer.Serializer;
+import com.gordon.rpc.io.server.ServerServiceInvocation;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -21,10 +20,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * @author luxing.hss
- * @date 2021/2/19
- **/
+
 @Slf4j
 public class NettyServerChannelRequestHandler extends ChannelInboundHandlerAdapter {
 
@@ -55,8 +51,8 @@ public class NettyServerChannelRequestHandler extends ChannelInboundHandlerAdapt
                 ProtocolMsg reqMsg = (ProtocolMsg)msg;
                 byte[] reqData = reqMsg.getContent();
                 // 请求反序列化
-                OrcRpcRequest req = this.serializer.deserialize(reqData, OrcRpcRequest.class);
-                OrcRpcResponse response = serverServiceInvocation.handleRequest(req);
+                SRpcRequest req = this.serializer.deserialize(reqData, SRpcRequest.class);
+                SRpcResponse response = serverServiceInvocation.handleRequest(req);
 
                 byte[] resData = null;
                 try {
@@ -64,7 +60,7 @@ public class NettyServerChannelRequestHandler extends ChannelInboundHandlerAdapt
                     resData = this.serializer.serialize(response);
                 } catch (Exception e) {
                     log.error("serialize error", e);
-                    OrcRpcResponse errRes = new OrcRpcResponse(RpcStatusEnum.ERROR);
+                    SRpcResponse errRes = new SRpcResponse(RpcStatusEnum.ERROR);
                     errRes.setRequestId(req.getRequestId());
                     errRes.setException(e);
                     resData = this.serializer.serialize(errRes);
