@@ -8,12 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class RoundRobinLoadBalancer implements LoadBalancer{
 
-    private final static Map<String, AtomicPositiveInteger> sequences = new HashMap<>();
+    private final static Map<String, AtomicPositiveInteger> sequences = new ConcurrentHashMap<>();
 
-    private final static Map<String, AtomicPositiveInteger> weightSequences = new HashMap<>();
+    private final static Map<String, AtomicPositiveInteger> weightSequences = new ConcurrentHashMap<>();
 
     @Override
     public String name() {
