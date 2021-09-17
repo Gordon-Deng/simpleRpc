@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 public class SRpcAutoConfiguration {
 
     @Bean
-    public SRpcProperties orcRpcProperties() {
+    public SRpcProperties sRpcProperties() {
         return new SRpcProperties();
     }
 
@@ -31,42 +31,42 @@ public class SRpcAutoConfiguration {
     /**
      * 服务注册中心
      *
-     * @param orcRpcProperties
-     * @return com.orc.rpc.registry.Registry
+     * @param sRpcProperties
+     * @return com.s.rpc.registry.Registry
      */
     @Bean
     public Registry registry(
-        @Autowired SRpcProperties orcRpcProperties) throws NacosException {
+        @Autowired SRpcProperties sRpcProperties) throws NacosException {
         // Zookeeper 注册中心
         //ZookeeperRegistry serviceRegistry = new ZookeeperRegistry(
-        //    orcRpcProperties.getRegisterAddr(),
-        //    orcRpcProperties.getServerPort(),
-        //    orcRpcProperties.getSerializer(),
-        //    orcRpcProperties.getWeight());
+        //    sRpcProperties.getRegisterAddr(),
+        //    sRpcProperties.getServerPort(),
+        //    sRpcProperties.getSerializer(),
+        //    sRpcProperties.getWeight());
 
         // nacos注册中心
         NacosRegistry serviceRegistry = new NacosRegistry(
-                orcRpcProperties.getRegisterAddr(),
-                orcRpcProperties.getServerPort(),
-                orcRpcProperties.getSerializer(),
-                orcRpcProperties.getWeight());
+                sRpcProperties.getRegisterAddr(),
+                sRpcProperties.getServerPort(),
+                sRpcProperties.getSerializer(),
+                sRpcProperties.getWeight());
         
         InvocationServiceSelector.setRegistry(serviceRegistry);
-        InvocationServiceSelector.setLoadBalancer(SpiLoaderUtils.getLoadBalancer(orcRpcProperties.getLoadBalance()));
+        InvocationServiceSelector.setLoadBalancer(SpiLoaderUtils.getLoadBalancer(sRpcProperties.getLoadBalance()));
         return serviceRegistry;
     }
 
     /**
      * 服务注册发现初始化
      *
-     * @param orcRpcProperties
+     * @param sRpcProperties
      * @param serviceRegistry
-     * @return com.orc.rpc.registry.RpcServiceRegistry
+     * @return com.s.rpc.registry.RpcServiceRegistry
      */
     @Bean
     public RpcBootStarter rpcBootStarter(
-        @Autowired SRpcProperties orcRpcProperties,
+        @Autowired SRpcProperties sRpcProperties,
         @Autowired Registry serviceRegistry) {
-        return new RpcBootStarter(serviceRegistry, orcRpcProperties);
+        return new RpcBootStarter(serviceRegistry, sRpcProperties);
     }
 }
