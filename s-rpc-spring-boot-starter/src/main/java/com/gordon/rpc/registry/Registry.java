@@ -34,7 +34,7 @@ public interface Registry {
      * 从注册中心获取服务地址列表
      *
      * @param serviceMetadata 服务元数据
-     * @return java.util.List<com.orc.rpc.registry.ServiceURL>
+     * @return java.util.List<com.s.rpc.registry.ServiceURL>
      */
     List<ServiceURL> getServiceList(ServiceMetadata serviceMetadata);
 

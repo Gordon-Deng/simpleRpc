@@ -16,7 +16,7 @@ public class SpiLoaderUtils {
      * 消息序列协议
      *
      * @param name
-     * @return com.orc.rpc.io.serializer.Serializer
+     * @return com.s.rpc.io.serializer.Serializer
      */
     public static Serializer getSerializer(String name) {
         Serializer serializer = getSupportSerializer().get(name);
@@ -27,7 +27,7 @@ public class SpiLoaderUtils {
      * 获取支持的序列化方式
      *
      * @param
-     * @return java.util.Map<java.lang.String,com.orc.rpc.io.serializer.Serializer>
+     * @return java.util.Map<java.lang.String,com.s.rpc.io.serializer.Serializer>
      */
     public static Map<String, Serializer> getSupportSerializer() {
         Map<String, Serializer> map = Maps.newHashMap();
@@ -45,7 +45,7 @@ public class SpiLoaderUtils {
      *  负载均衡器获取
      *
      * @param name
-     * @return com.orc.rpc.cluster.LoadBalancer
+     * @return com.s.rpc.cluster.LoadBalancer
      */
     public static LoadBalancer getLoadBalancer(String name) {
         ServiceLoader<LoadBalancer> loader = ServiceLoader.load(LoadBalancer.class);

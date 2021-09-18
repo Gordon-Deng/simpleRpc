@@ -119,7 +119,7 @@ public class ZookeeperRegistry implements Registry {
      * 根据服务meta data获取服务提供列表
      *
      * @param serviceMetadata
-     * @return java.util.List<com.orc.rpc.registry.ServiceURL>
+     * @return java.util.List<com.s.rpc.registry.ServiceURL>
      */
     @Override
     public List<ServiceURL> getServiceList(ServiceMetadata serviceMetadata) {
