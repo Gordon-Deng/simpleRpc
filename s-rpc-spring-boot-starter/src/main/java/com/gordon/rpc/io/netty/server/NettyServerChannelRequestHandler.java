@@ -28,7 +28,7 @@ public class NettyServerChannelRequestHandler extends ChannelInboundHandlerAdapt
     private static final ExecutorService executor = new ThreadPoolExecutor(4, 8,
         100, TimeUnit.SECONDS,
         new LinkedBlockingQueue<>(10000),
-        new ThreadFactoryBuilder().setNameFormat("orcRpcServer-%d").build());
+        new ThreadFactoryBuilder().setNameFormat("sRpcServer-%d").build());
 
     private ServerServiceInvocation serverServiceInvocation;
 
