@@ -1,5 +1,6 @@
 package com.gordon.rpc.registry;
 
+import com.gordon.rpc.exception.SRpcException;
 import com.gordon.rpc.model.ServiceMetadata;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface Registry {
      * @param serviceMetadata 服务元数据
      * @return void
      */
-    void register(ServiceMetadata serviceMetadata) throws Exception;
+    void register(ServiceMetadata serviceMetadata) throws SRpcException;
 
     /**
      * 客户端 服务订阅
